@@ -19,7 +19,7 @@ public class Querying {
         try {
             LinkedList<String> semesters = new LinkedList<>();
 
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT semester FROM grades GROUP BY semester ORDER BY SUBSTRING(semester, LENGTH(semester) - 4) DESC, SUBSTRING(semester, 1) ASC;";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
 
@@ -44,7 +44,7 @@ public class Querying {
         try {
             LinkedList<String> classes = new LinkedList<>();
 
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT class FROM grades WHERE semester = '" + semester + "' GROUP BY class;";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
 
@@ -72,7 +72,7 @@ public class Querying {
         try {
             LinkedList<String> gradesWeightsDesc = new LinkedList<>();
 
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT description, grade, weight FROM grades WHERE semester = '" + semester + "' AND class = '" + className + "';";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
 
@@ -102,7 +102,7 @@ public class Querying {
         String sqlString = "INSERT INTO grades (class, description, grade, weight, semester) VALUES ('" + className + "', '" + initialDescription + "'," + initialGrade + ",'" + initialWeight + "','" + semester + "'); ";
         //Now, execute the insert statement.
         try {
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             // execute the preparedstatement
             stmt.execute();
@@ -121,7 +121,7 @@ public class Querying {
         try {
             double credits = 0.0;
 
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT sum(credits) FROM courses;";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
 
@@ -143,7 +143,7 @@ public class Querying {
 
     public double getGPA() {
         try {
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT finalGrade, credits FROM courses;";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
 
@@ -183,7 +183,7 @@ public class Querying {
         try {
             LinkedList<String> courses = new LinkedList<>();
 
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT className FROM courses ORDER BY className;";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
 
@@ -209,7 +209,7 @@ public class Querying {
         try {
             String info[] = new String[4];
 
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "SELECT * FROM courses where className = '" + className + "';";
 
             PreparedStatement stmt = conn.prepareStatement(sqlString);
@@ -236,7 +236,7 @@ public class Querying {
 
     public void deleteClass(String className) {
         try {
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "DELETE FROM courses WHERE className = '" + className + "';";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             stmt.executeUpdate();
@@ -251,7 +251,7 @@ public class Querying {
     public void sendNewGradesToDatabase(LinkedList<String> newGrades, String className, String semester) throws SQLException {
         //First, remove any grades already present for the specified class (this avoids repeating grades).        
         try {
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             String sqlString = "DELETE FROM grades WHERE class = '" + className + "' AND semester = '" + semester + "';";
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             stmt.executeUpdate();
@@ -266,7 +266,7 @@ public class Querying {
             String sqlString = "INSERT INTO grades (description, grade, weight, class, semester) VALUES ('" + desc + "'," + newGrades.get(i + 1) + "," + newGrades.get(i + 2) + ",'" + className.toUpperCase() + "','" + semester + "'); ";
             //Now, execute the insert statement.
             try {
-                Connection conn = DriverManager.getConnection(url, "root", "");
+                Connection conn = DriverManager.getConnection(url, "root", "granted27");
                 PreparedStatement stmt = conn.prepareStatement(sqlString);
                 // execute the preparedstatement
                 stmt.execute();
@@ -284,7 +284,7 @@ public class Querying {
         String sqlString = "INSERT INTO courses (className, finalGrade, credits, semester) VALUES ('" + className + "','" + finalGrade + "'," + credits + ",'" + semester + "');";
         //Now, execute the insert statement.
         try {
-            Connection conn = DriverManager.getConnection(url, "root", "");
+            Connection conn = DriverManager.getConnection(url, "root", "granted27");
             PreparedStatement stmt = conn.prepareStatement(sqlString);
             // execute the preparedstatement
             stmt.execute();
