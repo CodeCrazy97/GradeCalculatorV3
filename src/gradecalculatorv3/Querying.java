@@ -163,8 +163,11 @@ public class Querying {
                     qualityPoints += 2.0 * credits;
                 } else if (grade.equals("D")) {
                     qualityPoints += 1.0 * credits;
+                } else if (grade.equals("F")) {
+                    // no quality points earned - failed the course
                 } else {
-                    // no quality points earned
+                    // this is a grade that does not count against GPA (for example, "P" for pass, or "S" for satisfactory); don't add the credits to totalCredits
+                    totalCredits -= credits;
                 }
             }
 
