@@ -10,9 +10,7 @@ This calculator helps me keep track of my grades in classes. It stores informati
 
 **Installation Instructions**
 
-To install this product, you will need MySQL on your machine. Additionally, you’ll need to set the following line of text in the run_GradeCalculatorV3.bat 
-C:\Users\Ethan_2\Documents\Programming Languages\Java\GradeCalculatorV3\dist\
-Set this path to the location of the Jar file on your machine. 
+To install this product, you will need MySQL on your machine.
 
 Before running the program, you will need to create the database. Run the CreateDatabase.sql file. This file will create the database in which grades will be stored.
 Built With
